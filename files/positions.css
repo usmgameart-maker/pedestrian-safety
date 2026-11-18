@@ -1,0 +1,63 @@
+/* РАСПОЛОЖЕНИЕ ГЕРОЕВ. Этот файл можно открыть в Блокноте.
+   После сохранения обновите игру: Ctrl+F5.
+
+   left: положение всей группы от левого края картинки. Больше = правее.
+   bottom: расстояние от нижнего края. Больше = выше.
+   height: размер героев относительно высоты картинки.
+
+   Отдельный герой: --mira-x / --lev-x / --anna-x двигают вправо (+)
+   или влево (-); --mira-y / --lev-y / --anna-y вниз (+) или вверх (-).
+   Пример для одной сцены: --mira-x: 5%; --mira-y: -3%;
+   Эти небольшие сдвиги считаются от размера листа поз героя.
+   Они не сдвигают остальных героев. Начните с 2–5%.
+
+   left больше — группа правее; меньше — левее.
+   bottom больше — группа выше; меньше — ниже.
+   height больше — герои крупнее; меньше — мельче.
+*/
+.scene .cast{left:6%;bottom:2%;height:33%}
+.scene .cast .mira{transform:translate(var(--mira-x,0%),var(--mira-y,0%))}
+.scene .cast .lev{transform:translate(var(--lev-x,0%),var(--lev-y,0%))}
+.scene .cast .anna{transform:translate(var(--anna-x,0%),var(--anna-y,0%))}
+
+/* 01 Школьные ворота */
+.scene[data-scene="school"] .cast{left:15%;bottom:8%;height:40%}
+.scene .cast.home-cast{left:16%;bottom:0;height:36%}
+
+/* 02 Двор: герои на плитке, правее кустов. */
+.scene[data-scene="courtyard"] .cast{left:5%;bottom:10%;height:40%}
+
+/* 03 Выезд из двора: герои остаются слева от пути машины. */
+.scene[data-scene="driveway"] .cast{left:10%;bottom:32%;height:30%}
+
+/* 04 Светофор */
+.scene[data-scene="signal"] .cast{left:6%;bottom:2%;height:40%}
+
+/* 05 Две полосы */
+.scene[data-scene="crossing"] .cast{left:0%;bottom:2%;height:45%}
+
+/* 06 Остановка: герои правее переднего куста. */
+.scene[data-scene="bus"] .cast{left:16%;bottom:3%;height:45%}
+
+/* 07 После выхода из автобуса */
+.scene[data-scene="arrival"] .cast{left:15%;bottom:2%;height:40%}
+/* 07 Второй шаг: команда подошла к переходу и смотрит на дорогу.
+   Первая позиция после высадки остаётся в строке выше. */
+.scene[data-scene="arrival"] .cast.arrival-at-crossing{left:2%;bottom:24%;height:35%;--mira-x:20%}
+
+/* 08 Финальный квартал */
+.scene[data-scene="final"] .cast{left:2%;bottom:20%;height:35%}
+
+/* 06 САЛОН АВТОБУСА — каждый герой отдельно.
+   height: размер ребёнка. left: правее/левее. bottom: выше/ниже.
+   После изменения размера проверьте, что ладонь остаётся у поручня. */
+.scene .solo.bus-lev{left:21%;bottom:5%;height:50%}
+.scene .solo.bus-mira{left:60%;bottom:5%;height:50%}
+/* Анна Сергеевна: отражена по горизонтали, держится за стойку рядом со Львом. */
+.scene .solo.bus-anna{left:26.3%;bottom:5%;height:60%;aspect-ratio:.66667}
+.scene .solo.bus-anna .sprite{transform:scaleX(-1)}
+
+/* 08 ОТДЕЛЬНЫЙ ПАВИЛЬОН. width: размер, left: правее, bottom: выше.
+   Его картинка лежит отдельно: images/shelter.png.
+   Фон без павильона: images/district-clean.png. */
+.scene .district-shelter{left:-10%;bottom:25%;width:32%;z-index:2}
